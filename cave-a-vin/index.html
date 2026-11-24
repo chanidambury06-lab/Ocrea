@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cave & Épicerie · Maquette</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Univers : une cave de quartier. Papier d'étiquette, bordeaux, liège et olive ; les sections se lisent comme des étiquettes de bouteilles. */
+:root {
+  --papier: #F5EFE4;
+  --creme: #EDE3D2;
+  --vin: #5B1A2A;
+  --liege: #B98B5E;
+  --olive: #66673A;
+  --encre: #1E1A17;
+  --gris: #6A6159;
+  --f-titre: "Young Serif", Georgia, "Times New Roman", serif;
+  --f-texte: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --gl: max(20px, env(safe-area-inset-left, 0px));
+  --gr: max(20px, env(safe-area-inset-right, 0px));
+}
+* { box-sizing: border-box; }
+html { background: var(--papier); scroll-behavior: smooth; }
+body { margin: 0; background: var(--papier); color: var(--encre); font-family: var(--f-texte); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--f-titre); font-weight: 400; line-height: 1.05; text-wrap: balance; }
+a { color: inherit; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: var(--gl); padding-right: var(--gr); }
+.label { font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--vin); }
+.maquette { background: var(--encre); color: var(--papier); font-size: .78rem; text-align: center; padding: 8px var(--gr) 8px var(--gl); padding-top: calc(8px + env(safe-area-inset-top, 0px)); }
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(245, 239, 228, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(30, 26, 23, .12); }
+.nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; }
+.logo { font-family: var(--f-titre); font-size: 1.3rem; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo i { width: 12px; height: 12px; border-radius: 50%; background: var(--vin); display: inline-block; }
+.liens { display: flex; gap: 24px; font-size: .9rem; }
+.liens a { text-decoration: none; color: var(--gris); }
+.liens a:hover { color: var(--vin); }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; background: var(--vin); color: var(--papier); text-decoration: none; font-weight: 600; font-size: .9rem; border-radius: 4px; transition: background .3s, transform .3s; }
+.btn:hover { background: #47131f; transform: translateY(-1px); }
+.btn.contour { background: transparent; color: var(--vin); box-shadow: inset 0 0 0 1.5px var(--vin); }
+@media (max-width: 820px) { .liens { display: none; } }
+
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding-block: clamp(40px, 7vw, 100px); }
+.hero h1 { font-size: clamp(3rem, 7.4vw, 6rem); }
+.hero h1 em { font-style: normal; color: var(--vin); }
+.hero .texte { display: grid; gap: 24px; justify-items: start; }
+.hero .lead { color: var(--gris); font-size: 1.12rem; max-width: 40ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.etagere { position: relative; display: flex; align-items: flex-end; justify-content: center; gap: clamp(8px, 2vw, 20px); padding: 30px 20px 0; }
+.etagere::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: var(--liege); border-radius: 3px; }
+.bouteille { width: clamp(54px, 8vw, 86px); position: relative; z-index: 1; transition: transform .5s; }
+.bouteille:hover { transform: translateY(-10px) rotate(-3deg); }
+.bouteille:nth-child(2) { transform: translateY(-4px); }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .etagere { order: -1; } }
+
+section.bloc { padding-block: clamp(64px, 9vw, 120px); }
+.tete { display: grid; gap: 12px; margin-bottom: clamp(32px, 5vw, 56px); max-width: 640px; }
+.tete h2 { font-size: clamp(2.2rem, 4.8vw, 3.6rem); }
+.tete p { color: var(--gris); }
+.etiquettes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.etiquette { background: var(--creme); border: 1.5px solid var(--encre); padding: 24px 20px; display: grid; gap: 8px; text-align: center; position: relative; transition: transform .4s; }
+.etiquette:hover { transform: rotate(-1deg) translateY(-4px); }
+.etiquette::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(30, 26, 23, .35); pointer-events: none; }
+.etiquette .region { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--olive); font-weight: 600; }
+.etiquette h3 { font-size: 1.6rem; }
+.etiquette p { font-size: .9rem; color: var(--gris); }
+@media (max-width: 900px) { .etiquettes { grid-template-columns: 1fr 1fr; } }
+
+.epicerie { background: var(--olive); color: var(--papier); }
+.epicerie .label, .epicerie .tete p { color: #E6E2C7; }
+.produits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.produit { border: 1.5px solid rgba(245, 239, 228, .45); padding: 26px; display: grid; gap: 10px; border-radius: 4px; }
+.produit svg { width: 44px; height: 44px; }
+.produit h3 { font-size: 1.45rem; }
+.produit p { color: #E6E2C7; font-size: .95rem; }
+@media (max-width: 860px) { .produits { grid-template-columns: 1fr; } }
+
+.agenda { display: grid; gap: 0; border-top: 1.5px solid var(--encre); }
+.evenement { display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: center; padding-block: 22px; border-bottom: 1px solid rgba(30, 26, 23, .2); }
+.evenement .date { font-family: var(--f-titre); font-size: 1.6rem; color: var(--vin); line-height: 1; }
+.evenement .date small { display: block; font-family: var(--f-texte); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gris); margin-top: 4px; }
+.evenement h3 { font-size: 1.35rem; }
+.evenement p { color: var(--gris); font-size: .92rem; }
+.badge { font-size: .74rem; font-weight: 600; padding: 6px 12px; border: 1.5px solid var(--vin); color: var(--vin); border-radius: 999px; white-space: nowrap; }
+@media (max-width: 640px) { .evenement { grid-template-columns: 1fr; gap: 6px; } .badge { justify-self: start; } }
+
+.astuce { margin-top: 26px; display: block; background: #fff; border: 1px dashed var(--liege); padding: 16px 18px; font-size: .92rem; color: var(--gris); max-width: 720px; }
+.astuce b { color: var(--encre); }
+
+.infos { background: var(--vin); color: var(--papier); }
+.infos .label { color: #E9C9A8; }
+.grille { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.carte { border: 1.5px solid rgba(245, 239, 228, .35); padding: 26px; display: grid; gap: 8px; align-content: start; border-radius: 4px; }
+.carte h3 { font-size: 1.4rem; }
+.carte p { color: #EBD9CC; }
+.manque { display: inline-block; background: rgba(233, 201, 168, .18); border: 1px dashed #E9C9A8; padding: 2px 8px; font-size: .86rem; }
+@media (max-width: 860px) { .grille { grid-template-columns: 1fr; } }
+footer { background: var(--encre); color: #b8ada2; font-size: .8rem; padding-block: 24px calc(24px + env(safe-area-inset-bottom, 0px)); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+@keyframes monte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.apparait { animation: monte .9s ease both; } .d2 { animation-delay: .12s; } .d3 { animation-delay: .24s; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="maquette">Maquette de proposition réalisée par Chani · le nom et les informations de la boutique sont à compléter</div>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#accueil"><i></i>Votre cave</a>
+    <nav class="liens" aria-label="Navigation"><a href="#vins">Les vins</a><a href="#epicerie">Épicerie fine</a><a href="#agenda">Dégustations</a><a href="#infos">La boutique</a></nav>
+    <a class="btn" href="#infos">Nous trouver</a>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="hero">
+    <div class="wrap">
+      <div class="texte">
+        <span class="label apparait">Cave à vin & épicerie fine · Toulouse</span>
+        <h1 class="apparait d2">Des bouteilles choisies, <em>des produits qui ont du goût.</em></h1>
+        <p class="lead apparait d3">Vins de vignerons, spiritueux et épicerie fine. Venez goûter, demander conseil ou préparer un cadeau.</p>
+        <div class="actions apparait d3"><a class="btn" href="#vins">Découvrir la sélection</a><a class="btn contour" href="#agenda">Prochaines dégustations</a></div>
+      </div>
+      <div class="etagere" aria-hidden="true">
+        <svg class="bouteille" viewBox="0 0 60 200"><path d="M24 4h12v46c0 8 18 16 18 40v100a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V90c0-24 18-32 18-40z" fill="#5B1A2A"/><rect x="22" y="2" width="16" height="16" rx="2" fill="#B98B5E"/><rect x="10" y="110" width="40" height="52" fill="#F5EFE4"/><text x="30" y="132" text-anchor="middle" font-family="Young Serif, Georgia" font-size="9" fill="#1E1A17">ROUGE</text><text x="30" y="146" text-anchor="middle" font-family="Instrument Sans, Arial" font-size="5" letter-spacing="1" fill="#66673A">SUD-OUEST</text></svg>
+        <svg class="bouteille" viewBox="0 0 60 220"><path d="M25 4h10v60c0 8 19 14 19 36v108a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V100c0-22 19-28 19-36z" fill="#C7B56A"/><rect x="23" y="2" width="14" height="18" rx="2" fill="#1E1A17"/><rect x="10" y="122" width="40" height="54" fill="#F5EFE4"/><text x="30" y="146" text-anchor="middle" font-family="Young Serif, Georgia" font-size="9" fill="#1E1A17">BLANC</text><text x="30" y="160" text-anchor="middle" font-family="Instrument Sans, Arial" font-size="5" letter-spacing="1" fill="#66673A">LOIRE</text></svg>
+        <svg class="bouteille" viewBox="0 0 60 200"><path d="M24 4h12v46c0 8 18 16 18 40v100a6 6 0 0 1-6 6H12a6 6 0 0 1-6-6V90c0-24 18-32 18-40z" fill="#E7A9A0"/><rect x="22" y="2" width="16" height="16" rx="2" fill="#B98B5E"/><rect x="10" y="110" width="40" height="52" fill="#F5EFE4"/><text x="30" y="132" text-anchor="middle" font-family="Young Serif, Georgia" font-size="9" fill="#1E1A17">ROSÉ</text><text x="30" y="146" text-anchor="middle" font-family="Instrument Sans, Arial" font-size="5" letter-spacing="1" fill="#66673A">PROVENCE</text></svg>
+        <svg class="bouteille" viewBox="0 0 60 180"><path d="M18 4h24v30c0 6 14 10 14 24v112a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V58c0-14 14-18 14-24z" fill="#8A5A2B"/><rect x="16" y="2" width="28" height="12" rx="2" fill="#1E1A17"/><rect x="10" y="90" width="40" height="50" fill="#F5EFE4"/><text x="30" y="112" text-anchor="middle" font-family="Young Serif, Georgia" font-size="8" fill="#1E1A17">ARMAGNAC</text></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="vins" style="padding-top:0">
+    <div class="wrap">
+      <div class="tete"><span class="label">Les vins</span><h2>Une sélection par régions</h2><p>Exemple de mise en page : chaque carte pourra afficher vos coups de cœur du moment.</p></div>
+      <div class="etiquettes">
+        <article class="etiquette"><span class="region">Sud-Ouest</span><h3>Nos voisins</h3><p>Fronton, Gaillac, Cahors : les vins d'ici.</p></article>
+        <article class="etiquette"><span class="region">Loire & Alsace</span><h3>Les blancs</h3><p>Des blancs frais et minéraux pour l'apéritif.</p></article>
+        <article class="etiquette"><span class="region">Bulles</span><h3>Pour fêter</h3><p>Champagnes de vignerons et crémants.</p></article>
+        <article class="etiquette"><span class="region">Spiritueux</span><h3>Le digestif</h3><p>Armagnacs, rhums et whiskies choisis.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc epicerie" id="epicerie">
+    <div class="wrap">
+      <div class="tete"><span class="label">Épicerie fine</span><h2>De quoi accompagner la bouteille</h2><p>Trois rayons mis en avant, à adapter à votre boutique.</p></div>
+      <div class="produits">
+        <article class="produit"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="#F5EFE4"/><path d="M12 26c4-8 16-8 20 0-4 6-16 6-20 0z" fill="#B98B5E"/></svg><h3>Fromages & charcuterie</h3><p>Pour composer une planche en sortant de la boutique.</p></article>
+        <article class="produit"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="#F5EFE4"/><rect x="15" y="12" width="14" height="20" rx="4" fill="#66673A"/></svg><h3>Huiles & condiments</h3><p>Huiles d'olive, vinaigres et petits pots du terroir.</p></article>
+        <article class="produit"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="#F5EFE4"/><path d="M14 18h16l-2 14H16z" fill="#5B1A2A"/><path d="M18 18c0-4 8-4 8 0" fill="none" stroke="#5B1A2A" stroke-width="2"/></svg><h3>Coffrets cadeaux</h3><p>Composés sur mesure, pour les fêtes ou les entreprises.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="agenda">
+    <div class="wrap">
+      <div class="tete"><span class="label">Dégustations</span><h2>Les prochains rendez-vous</h2></div>
+      <div class="agenda">
+        <div class="evenement"><div class="date">Jeu.<small>exemple</small></div><div><h3>Dégustation : les vins du Sud-Ouest</h3><p>Trois vins, un vigneron, de quoi grignoter.</p></div><span class="badge">Sur réservation</span></div>
+        <div class="evenement"><div class="date">Sam.<small>exemple</small></div><div><h3>Atelier accords mets et vins</h3><p>Apprendre à marier fromages et vins blancs.</p></div><span class="badge">Places limitées</span></div>
+        <div class="evenement"><div class="date">Déc.<small>exemple</small></div><div><h3>Coffrets de Noël</h3><p>Commandez vos coffrets avant le 20 décembre.</p></div><span class="badge">Nouveau</span></div>
+      </div>
+      <div class="astuce"><b>Vous pourrez modifier cette partie vous-même :</b><br>ajouter une dégustation, changer une date ou un coffret, depuis votre téléphone, sans compétence technique.</div>
+    </div>
+  </section>
+
+  <section class="bloc infos" id="infos">
+    <div class="wrap">
+      <div class="tete"><span class="label">La boutique</span><h2>Passez nous voir</h2></div>
+      <div class="grille">
+        <div class="carte"><h3>Adresse</h3><p><span class="manque">Votre adresse</span><br>Toulouse</p></div>
+        <div class="carte"><h3>Horaires</h3><p><span class="manque">Vos horaires</span></p></div>
+        <div class="carte"><h3>Contact</h3><p><span class="manque">Téléphone et e-mail</span><br>Commandes de coffrets par téléphone.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><span>Maquette de cave à vin et épicerie fine · Toulouse</span><span>Proposition réalisée par Chani</span></div></footer>
+</body>
+</html>
